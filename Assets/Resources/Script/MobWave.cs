@@ -11,7 +11,7 @@ public struct MobWave
         Mobs,Minions,Boses
     }
 
-    public WaveType type;
+    public WaveType Type;
     public GameObject Prefab;
     public int Count;
 }

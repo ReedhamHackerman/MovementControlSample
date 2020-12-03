@@ -44,37 +44,37 @@ public class ColorWindow : EditorWindow
         //Have each element below be side by side
         DoControls();
         DoCanvas();
-        DoPainting();
+       // DoPainting();
         GUILayout.EndHorizontal();
     }
-    void DoPainting()
-    {
+    //void DoPainting()
+    //{
 
        
-        Event myEvent = Event.current;
+    //    Event myEvent = Event.current;
        
-        for (int i = 0; i < width; i++)
-        {
+    //    for (int i = 0; i < width; i++)
+    //    {
            
-            for (int j = 0; j < height; j++)
-            {
+    //        for (int j = 0; j < height; j++)
+    //        {
                
-                if ( colorRect.Contains(myEvent.mousePosition))
-                {
-                    //if (Mathf.Approximately(colors[i].r, colors[i + 1].r) || Mathf.Approximately(colors[i].g, colors[i + 1].g) || Mathf.Approximately(colors[i].b, colors[i + 1].b))
-                    ////{
-                    //    if(myEvent.button == 0)
-                    //    {
-                            colors[i] = paintColor;
+    //            if ( colorRect.Contains(myEvent.mousePosition))
+    //            {
+    //                //if (Mathf.Approximately(colors[i].r, colors[i + 1].r) || Mathf.Approximately(colors[i].g, colors[i + 1].g) || Mathf.Approximately(colors[i].b, colors[i + 1].b))
+    //                ////{
+    //                //    if(myEvent.button == 0)
+    //                //    {
+    //                        colors[i] = paintColor;
 
-                    //}
+    //                //}
 
-                    //}
-                    myEvent.Use();
-                }
-            }
-        }
-    }
+    //                //}
+    //                myEvent.Use();
+    //            }
+    //        }
+    //    }
+    //}
     void DoControls()
     {
         GUILayout.BeginVertical();                                                      //Start vertical section, all GUI draw code after this will belong to same vertical
@@ -148,12 +148,20 @@ public class ColorWindow : EditorWindow
                 if ((evt.type == EventType.MouseDown || evt.type == EventType.MouseDrag) && colorRect.Contains(evt.mousePosition)) //Can now paint while dragging update
                 {
                     if (evt.button == 0)
-                       colors[index] = selectedColor; //Set the color of the index
+                    {
+                        colors[index] = selectedColor;
+                        
+                       
+                    }
+                    if(evt.button == 1)
+                    {
+                        FillNewColor(i, j, selectedColor);
+                    }
                     else
                         colors[index] = eraseColor;   //Set the color of the index
                     evt.Use();                        //The event was consumed, if you try to use event after this, it will be non-sensical
                 }
-                GUI.color = colors[index];       //Same as a 2D array
+                GUI.color = colors[index];            //Same as a 2D array
                 GUI.DrawTexture(colorRect, colorTexture); //This is colored by GUI.Color!!!
             }
             GUILayout.EndVertical();                  //End Vertical Zone
@@ -161,4 +169,27 @@ public class ColorWindow : EditorWindow
         GUILayout.EndHorizontal();                    //End horizontal zone
         GUI.color = oldColor;                         //Restore the old color
     }
+
+
+    private void FillNewColor(int x, int y, Color lastColor)
+    {
+        int current = y + x * height;
+
+        if (x < 0 || x >= width || y < 0 || y >= height)
+            return;
+
+        if (!colors[current].Equals(lastColor))
+            return;
+
+        if (colors[current].Equals(paintColor))
+            return;
+
+        colors[current] = paintColor;
+
+        FillNewColor(x + 1, y, lastColor);
+        FillNewColor(x - 1, y, lastColor);
+        FillNewColor(x, y + 1, lastColor);
+        FillNewColor(x, y - 1, lastColor);
+    }
 }
+

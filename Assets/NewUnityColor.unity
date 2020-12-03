@@ -242,6 +242,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &944965781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 944965783}
+  - component: {fileID: 944965782}
+  m_Layer: 0
+  m_Name: MainFlow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &944965782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944965781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df43ab754601ee418f310f70f5cc5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Waves:
+  - Type: 0
+    Prefab: {fileID: 6599273603596752256, guid: 8c8c7b9e77c5c0e4bb2a0d479592daaa, type: 3}
+    Count: 5
+  - Type: 2
+    Prefab: {fileID: 1509827342925655703, guid: 05f3c5f3defd4a745b667414f7ef76b4, type: 3}
+    Count: 4
+  - Type: 2
+    Prefab: {fileID: 7782337349559483756, guid: 49b45657f21b54b4bb25688a6a0c0c15, type: 3}
+    Count: 3
+  - Type: 1
+    Prefab: {fileID: 7349016678112426984, guid: ab9c67686cf61cb44bcde513f5f606de, type: 3}
+    Count: 8
+  - Type: 0
+    Prefab: {fileID: 8666222934087289555, guid: 55e655f0b0501a4459979999edf0e324, type: 3}
+    Count: 5
+  - Type: 0
+    Prefab: {fileID: 5133148890612295241, guid: 1340caa1807360c4698b0ec58fb6c3c8, type: 3}
+    Count: 1
+  - Type: 0
+    Prefab: {fileID: 3244876977712353323, guid: 9b5cb779cb5c9d8459dc7fe4861641cc, type: 3}
+    Count: 1
+  - Type: 0
+    Prefab: {fileID: 7078187070757355718, guid: 11633defc06ad3d47b37bcb310a131d8, type: 3}
+    Count: 1
+  - Type: 0
+    Prefab: {fileID: 7092791047634488631, guid: a55c95f964f85b94db924b4674542c13, type: 3}
+    Count: 1
+  - Type: 0
+    Prefab: {fileID: 1509827342925655703, guid: 05f3c5f3defd4a745b667414f7ef76b4, type: 3}
+    Count: 3
+--- !u!4 &944965783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944965781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.39, y: -7.8989964, z: -8.657575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!28 &978792281
 Texture2D:
   m_ObjectHideFlags: 0
