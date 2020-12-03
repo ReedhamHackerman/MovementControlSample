@@ -114,21 +114,21 @@ public class ColorWindow : EditorWindow
         GUILayout.EndVertical();                                                        //end vertical section
     }
 
-    private void Randomness()
+    private Color Randomness()
     {
-        for (int i = 0; i < colors.Count(); i++)
-        {
+       
             random = Random.Range(0, 2);
             if (random == 0)
             {
-                colors[i] = new Color(colors[i].r + randomNessInFloat, colors[i].g + randomNessInFloat, colors[i].b + randomNessInFloat);
+                selectedColor = new Color(selectedColor.r + randomNessInFloat, selectedColor.g + randomNessInFloat, selectedColor.b + randomNessInFloat);
+                return selectedColor;
             }
             else
             {
-                colors[i] = new Color(colors[i].r - randomNessInFloat, colors[i].g - randomNessInFloat, colors[i].b - randomNessInFloat);
+                selectedColor = new Color(selectedColor.r - randomNessInFloat, selectedColor.g - randomNessInFloat, selectedColor.b - randomNessInFloat);
+                return selectedColor;
             }
 
-        }
     }
 
     void DoCanvas()
@@ -149,16 +149,16 @@ public class ColorWindow : EditorWindow
                 {
                     if (evt.button == 0)
                     {
-                        colors[index] = selectedColor;
-                        
-                       
+                        colors[index] = Randomness();
                     }
-                    if(evt.button == 1)
+                    else if (evt.button == 1)
                     {
                         FillNewColor(i, j, selectedColor);
                     }
                     else
-                        colors[index] = eraseColor;   //Set the color of the index
+                        colors[index] = eraseColor;
+                    
+                      //Set the color of the index
                     evt.Use();                        //The event was consumed, if you try to use event after this, it will be non-sensical
                 }
                 GUI.color = colors[index];            //Same as a 2D array
