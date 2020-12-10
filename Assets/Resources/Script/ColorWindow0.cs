@@ -24,7 +24,8 @@ public class ColorWindow : EditorWindow
     Color eraseColor = Color.white;
     Color paintColor = Color.white;
     Rect colorRect;
-
+    Color tempColor;
+    float rando;
     public void OnEnable()
     {
         colors = new Color[width * height];
@@ -85,10 +86,10 @@ public class ColorWindow : EditorWindow
             colors = colors.Select(c => c = selectedColor).ToArray();                   //Linq expresion, for every color in the color array, sets it to the selected color
         GUILayout.Label("Randomness ", EditorStyles.boldLabel);
         randomNessInFloat = EditorGUILayout.FloatField(randomNessInFloat);
-        if(GUILayout.Button("Apply Randomness"))
-        {
-            Randomness();
-        }
+        //if(GUILayout.Button("Apply Randomness"))
+        //{
+        //    Randomness();
+        //}
         GUILayout.Label("Paint color", EditorStyles.centeredGreyMiniLabel);
         paintColor = EditorGUILayout.ColorField("Paint color", paintColor);
         GUILayout.FlexibleSpace();                                                      //Flexible space uses any left over space in the loadout
@@ -114,22 +115,10 @@ public class ColorWindow : EditorWindow
         GUILayout.EndVertical();                                                        //end vertical section
     }
 
-    private Color Randomness()
-    {
-       
-            random = Random.Range(0, 2);
-            if (random == 0)
-            {
-                selectedColor = new Color(selectedColor.r + randomNessInFloat, selectedColor.g + randomNessInFloat, selectedColor.b + randomNessInFloat);
-                return selectedColor;
-            }
-            else
-            {
-                selectedColor = new Color(selectedColor.r - randomNessInFloat, selectedColor.g - randomNessInFloat, selectedColor.b - randomNessInFloat);
-                return selectedColor;
-            }
+    //private Color Randomness()
+    //{
 
-    }
+    //}
 
     void DoCanvas()
     {
@@ -149,7 +138,15 @@ public class ColorWindow : EditorWindow
                 {
                     if (evt.button == 0)
                     {
-                        colors[index] = Randomness();
+
+                        tempColor = selectedColor;
+                        rando = Random.Range(-randomNessInFloat, randomNessInFloat);
+                        rando = Mathf.Clamp(rando, -0.5f, 0.5f);
+                        selectedColor.r = selectedColor.r + rando;
+                        selectedColor.g = selectedColor.g + rando;
+                        selectedColor.b = selectedColor.b + rando;
+                        colors[index] = selectedColor;
+                        selectedColor = tempColor;
                     }
                     else if (evt.button == 1)
                     {

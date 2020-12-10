@@ -6,7 +6,6 @@ public class MovementController : MonoBehaviour
 {
     public Transform[] waypoints;
     public float speed = 0;                     //This must be public or SerializeField
-    public bool drawSpeed;
 
     int currentWaypointIndex;
 
