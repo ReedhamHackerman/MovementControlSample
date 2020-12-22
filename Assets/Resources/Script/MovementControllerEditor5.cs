@@ -105,9 +105,16 @@ public class MovementControllerEditor : Editor
             if (GUILayout.Button("-", GUILayout.Width(20f)))  //A button of width 20
                 RemoveWaypointAtIndex(i);                     //Calls remove function on current for loop index (i)
 
-
-            if (GUILayout.Button("D", GUILayout.Width(20f)))
-                AddWaypoint(result, i);
+            if(result != null)
+            {
+                if (GUILayout.Button("D", GUILayout.Width(20f)))
+                    AddWaypoint(result, i);
+            }
+            if(result == null)
+            {
+                Debug.Log("Pls Add transform");
+            }
+           
             GUILayout.EndHorizontal();                  //Ends the horizontal line called earlier
         }
         DropAreaGUI();
@@ -163,8 +170,17 @@ public class MovementControllerEditor : Editor
             Handles.color = Color.green;                                                                    //Set the color of all 
             for (int i = 0; i < mc.waypoints.Length - 1; i++)                                               //Length minus one, because the last one doesnt have a "next"
                 if (mc.waypoints[i] && mc.waypoints[i + 1])
-                    Handles.DrawLine(mc.waypoints[i].position, mc.waypoints[i + 1].position);                   //Draw a line from i to i+1
-            Handles.DrawLine(mc.waypoints[mc.waypoints.Length - 1].position, mc.waypoints[0].position);     //Draw line from last element back to first element
+                    Handles.DrawLine(mc.waypoints[i].position, mc.waypoints[i + 1].position);
+            try
+            {
+                Handles.DrawLine(mc.waypoints[mc.waypoints.Length - 1].position, mc.waypoints[0].position);
+            }
+            catch (System.Exception)
+            {
+
+                Debug.Log("I Think Someone's Transform is missing ");
+            }//Draw a line from i to i+1
+                //Draw line from last element back to first element
             Handles.color = originalHandleColor;                                                            //Reset the handle back to the original!
         }
 
